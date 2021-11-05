@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MVCClinica.Models.Medico>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    
+    <table>
+        <p>@Html.ActionLink("Crear Medico", "Crear", "Medico")</p>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Nombre) </th>
+            <th>@Html.DisplayNameFor(model => model.Apellido)</th>
+            <th>@Html.DisplayNameFor(model => model.NroMatricula)</th>
+            <th>@Html.DisplayNameFor(model => model.Especialidad)</th>
+            <th>Details</th>
+            <th>Modificar</th>
+            <th>Borrar</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Nombre) </td>
+                <td>@Html.DisplayFor(modelItem => item.Apellido)</td>
+                <td>@Html.DisplayFor(modelItem => item.NroMatricula)</td>
+                <td>@Html.DisplayFor(modelItem => item.Especialidad)</td>
+                <td>
+                    @Html.ActionLink("Detalle", "Detalle", new { id = item.MedicoId })
+                </td>
+                <td>
+                    @Html.ActionLink("Modificar", "Modificar", new { id = item.MedicoId })
+                </td>
+                <td>
+                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.MedicoId })
+                </td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
