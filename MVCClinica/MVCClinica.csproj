@@ -125,6 +125,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Medico\Index.cshtml" />
     <Content Include="Views\Medico\Crear.cshtml" />
+    <Content Include="Views\Medico\Editar.cshtml" />
+    <Content Include="Views\Medico\Eliminar.cshtml" />
+    <Content Include="Views\Medico\Detalle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

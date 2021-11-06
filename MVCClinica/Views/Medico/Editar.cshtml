@@ -1,0 +1,41 @@
+﻿@model MVCClinica.Models.Medico
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Editar</title>
+</head>
+<body>
+    @using (Html.BeginForm("Editar", "Medico", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => model.MedicoId)
+        <div>
+            @Html.LabelFor(model => model.Nombre)
+            @Html.EditorFor(model => model.Nombre)
+            @Html.ValidationMessageFor(model => model.Nombre)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Apellido)
+            @Html.EditorFor(model => model.Apellido)
+            @Html.ValidationMessageFor(model => model.Apellido)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.NroMatricula)
+            @Html.EditorFor(model => model.NroMatricula)
+            @Html.ValidationMessageFor(model => model.NroMatricula)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Especialidad)
+            @Html.EditorFor(model => model.Especialidad)
+            @Html.ValidationMessageFor(model => model.Especialidad)
+        </div>
+
+        <p>
+            <input type="submit" value="Guardar" />
+        </p>
+    }
+    @Html.ActionLink("Regresar", "Index", "Medico")
+</body>
+</html>

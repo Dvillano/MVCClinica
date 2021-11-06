@@ -17,6 +17,17 @@ namespace MVCClinica.Controllers
             return View("Index", AdmMedico.Listar());  
         }
 
+        public ActionResult Detalle(int id)
+        {
+            Medico medico = AdmMedico.Detalle(id);
+            if (medico != null)
+            {
+                return View("Detalle", medico);
+            }
+            else
+                return HttpNotFound();
+        }
+
         [ActionName("Crear")]
         public ActionResult Crear()
         {
@@ -37,6 +48,71 @@ namespace MVCClinica.Controllers
             }
 
             return View("Crear", medico);
+        }
+
+        [HttpGet]
+        public ActionResult Editar(int id)
+        {
+            Medico medico = AdmMedico.Buscar(id);
+            if (medico != null)
+            {
+                return View("Editar", medico);
+            }
+            else
+                return HttpNotFound();
+            
+        }
+
+        [HttpPost]
+        [ActionName("Editar")]
+        public ActionResult EditarConfirmed(Medico medico)
+        {
+            if (ModelState.IsValid)
+            {
+                AdmMedico.Editar(medico);
+                return RedirectToAction("Index");
+            }
+
+            return View("Editar", medico);
+        }
+
+        public ActionResult Eliminar(int id)
+        {
+            Medico medico = AdmMedico.Detalle(id);
+
+            if (medico != null)
+            {
+                return View("Eliminar", medico);
+            }
+            else 
+                return HttpNotFound();
+        }
+
+        [HttpPost]
+        [ActionName("Eliminar")]
+        public ActionResult EliminarConfirmed(int id)
+        {
+            Medico medico = AdmMedico.Detalle(id);
+
+            if (medico != null)
+            {
+                AdmMedico.Eliminar(medico);
+                return RedirectToAction("Index");
+            }
+            else
+                return HttpNotFound();
+
+        }
+
+        public ActionResult TraerPorEspecialidad(string especialidad)
+        {
+            if (especialidad != null)
+            {
+                return View("Index", AdmMedico.ListarPorEspecialidad(especialidad));
+            }
+            else
+                return RedirectToAction("Index");    
+
         }
     }
 }

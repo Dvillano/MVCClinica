@@ -8,9 +8,17 @@
 </head>
 <body>
 
-    
+
+    <p>@Html.ActionLink("Crear Medico", "Crear", "Medico")</p>
+
+    @using (Html.BeginForm("TraerPorEspecialidad", "Medico", FormMethod.Get))
+    {
+        @Html.TextBox("Especialidad")
+        <input type="submit" value="Buscar por especialidad" />
+    }
+
     <table>
-        <p>@Html.ActionLink("Crear Medico", "Crear", "Medico")</p>
+
         <tr>
             <th>@Html.DisplayNameFor(model => model.Nombre) </th>
             <th>@Html.DisplayNameFor(model => model.Apellido)</th>
@@ -32,7 +40,7 @@
                     @Html.ActionLink("Detalle", "Detalle", new { id = item.MedicoId })
                 </td>
                 <td>
-                    @Html.ActionLink("Modificar", "Modificar", new { id = item.MedicoId })
+                    @Html.ActionLink("Editar", "Editar", new { id = item.MedicoId })
                 </td>
                 <td>
                     @Html.ActionLink("Eliminar", "Eliminar", new { id = item.MedicoId })
