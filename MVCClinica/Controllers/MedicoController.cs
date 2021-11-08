@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using MVCClinica.Data;
 using MVCClinica.Models;
 using MVCClinica.Repository;
+using MVCClinica.Filter;
 
 namespace MVCClinica.Controllers
 {
@@ -35,6 +36,7 @@ namespace MVCClinica.Controllers
             return View("Crear", medico);
         }
 
+        [MyFilterAction]
         [HttpPost]
         public ActionResult Crear(Medico medico)
         {
@@ -106,13 +108,23 @@ namespace MVCClinica.Controllers
 
         public ActionResult TraerPorEspecialidad(string especialidad)
         {
+
             if (especialidad != null)
             {
+                ViewBag.Especialidad = especialidad;
                 return View("Index", AdmMedico.ListarPorEspecialidad(especialidad));
             }
             else
                 return RedirectToAction("Index");    
-
         }
+
+        public ActionResult TraerPorNombreYApellido(string nombre, string apellido)
+        {
+            ViewBag.Nombre = nombre;
+            ViewBag.Apellido = apellido;
+
+            return View();
+        }
+
     }
 }
